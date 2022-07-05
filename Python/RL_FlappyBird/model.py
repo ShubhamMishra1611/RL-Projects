@@ -47,13 +47,23 @@ class QTrainer:
             done=(done,)
 
         pred=self.model(state)
+        #-----wierdo
+        #print("state: ",state)
+        #print("next state: ",next_state)
+        print("action: ",action)
+        #print("reward: ",reward)
+        #print("done: ",done)
+        #print("pred: ",pred)
+        #-----wierdo
         target=pred.clone()
-
-        for idx in range(len(done)):
-            Q_new=reward[idx]
-            if not done[idx]:
-                Q_new=reward[idx]+self.gamma*torch.max(self.model(next_state[idx]))
-            target[idx][torch.argmax(action).item()]=Q_new
+        print("target: ",target)
+        #print(len(done))
+        #for idx in range(len(done)):
+        Q_new=reward[0]
+        print("Q table: " ,Q_new )
+        if not done[0]:
+            Q_new=reward[0]+self.gamma*torch.max(self.model(next_state[0]))
+        target[torch.argmax(action).item()][0]=Q_new# a change is done here
         self.optimizer.zero_grad()
         loss=self.criterion(target,pred)
         loss.backward()

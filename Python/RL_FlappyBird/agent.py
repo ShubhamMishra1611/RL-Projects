@@ -35,13 +35,14 @@ class Agent:
         bird=game.bird
         current_y_cord=bird.y
         pipe=game.pipe
-
+        print(len(pipe))
         for i in range(len(pipe)):
-            if pipe[i].x-bird.x>0:
+            if pipe[i].x-bird.x>=0:
                 nearest_pipe_x_upper=pipe[i].x
                 nearest_pipe_y_upper=pipe[i].y
                 nearest_pipe_y_lower=pipe[i+1].y
                 break
+        
 
         state=[
             current_y_cord,

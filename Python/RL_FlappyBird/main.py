@@ -70,7 +70,6 @@ class flappybird:
         #if bird touch the pipe
         for i in range(len(self.pipe)):
             if i%2==0:
-                #edge_y abguity
                 if self.bird.x+edge_x+SIZE>=self.pipe[i].x and self.bird.y-SIZE-edge_y<self.pipe[i].y+self.pipe[i].l:
                     return True
                 return False
@@ -110,7 +109,7 @@ class flappybird:
             self.score+=1
             self.reward=10
             self.should_append=True
-        if self.pipe[0].x<random.randint(100,200) :
+        if self.pipe[0].x<random.randint(150,200) :
             if not self.should_append:
                 return
             x=700#this will give a smooth appearing effect
